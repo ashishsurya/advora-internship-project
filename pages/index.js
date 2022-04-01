@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
-import { cityFilter } from '../atoms/filters/cityfilter';
+import { stateFilter } from '../atoms/filters/stateFilter';
 import { statesState } from '../atoms/statesState';
 import Filters from '../components/Filters';
 import NavBar from '../components/NavBar';
@@ -20,15 +20,17 @@ export default function Home({ rides, user }) {
   const [upComingRides, setUpComingRides] = useState(null);
   const [previousRides, setPreviousRides] = useState(null);
   const [states, setStates] = useRecoilState(statesState);
-  const [cities, setCities] = useRecoilState(cityFilter);
+  const [state, setState] = useRecoilState(stateFilter);
+
   // to be implemented
   useEffect(() => {
-    setCities(extractCities(rides));
     setStates(extractStates(rides));
     setUpComingRides(extractUpcomingRides(rides));
     setPreviousRides(extractPreviousRides(rides));
-  }, [rides, setCities, setStates]);
-  console.log({ states, cities });
+  }, [rides, setStates]);
+
+  useEffect(() => {}, [state]);
+
   return (
     <div className={styles.pagewrapper}>
       <Head>
@@ -56,7 +58,7 @@ export default function Home({ rides, user }) {
               }
             >
               Upcoming Rides{' '}
-              <span>{upComingRides && getLength(upComingRides)}</span>
+              <span>({upComingRides && getLength(upComingRides)})</span>
             </p>
           </li>
           <li>
@@ -67,7 +69,7 @@ export default function Home({ rides, user }) {
               }
             >
               Previous Rides{' '}
-              <span>{previousRides && getLength(previousRides)}</span>
+              <span>({previousRides && getLength(previousRides)})</span>
             </p>
           </li>
         </div>
@@ -79,28 +81,52 @@ export default function Home({ rides, user }) {
 
       {tab === 'nearestrides' && (
         <section className={styles.rides__wrapper}>
-          {rides?.map(
-            (ride) =>
-              ride && <RideComponent key={ride.generated_id} ride={ride} />
-          )}
+          {rides
+            ?.filter((ride) => {
+              if (state != '') {
+                return ride.state === state;
+              } else {
+                return ride;
+              }
+            })
+            .map(
+              (ride) =>
+                ride && <RideComponent key={ride.generated_id} ride={ride} />
+            )}
         </section>
       )}
 
       {tab === 'upcomingrides' && (
         <section className={styles.rides__wrapper}>
-          {upComingRides?.map(
-            (ride) =>
-              ride && <RideComponent key={ride.generated_id} ride={ride} />
-          )}
+          {upComingRides
+            ?.filter((ride) => {
+              if (state != '') {
+                return ride?.state === state;
+              } else {
+                return ride;
+              }
+            })
+            .map(
+              (ride) =>
+                ride && <RideComponent key={ride.generated_id} ride={ride} />
+            )}
         </section>
       )}
 
       {tab === 'previousrides' && (
         <section className={styles.rides__wrapper}>
-          {previousRides?.map(
-            (ride) =>
-              ride && <RideComponent key={ride.generated_id} ride={ride} />
-          )}
+          {previousRides
+            ?.filter((ride) => {
+              if (state != '') {
+                return ride?.state === state;
+              } else {
+                return ride;
+              }
+            })
+            .map(
+              (ride) =>
+                ride && <RideComponent key={ride.generated_id} ride={ride} />
+            )}
         </section>
       )}
     </div>

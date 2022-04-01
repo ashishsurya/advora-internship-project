@@ -1,0 +1,13 @@
+.filter__wrapper > select{
+  background-color: transparent;
+  padding: 5px 15px;
+  border-radius: 10px;
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
+  font-size: 18px;
+  font-family: monospace;
+}
+
+.filter__wrapper > select:focus{
+  outline:none
+}
