@@ -1,0 +1,41 @@
+.ride__wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding: 29px;
+  background-color: var(--ride-bg);
+  border-radius: 10px;
+  margin: 20px 0;
+  height: 198px;
+  gap: 44px;
+  position: relative;
+  width: 100%;
+}
+
+.ride__center {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.ride__left > img {
+  /* width: 296px; */
+  /* height: 144px; */
+  border-radius: 5px;
+}
+
+.loaction__details_wrapper {
+  display: flex;
+  align-items: center;
+gap: 10px;
+}
+
+.loaction__chips {
+  padding: 4px 10px;
+  background-color: var(--badge-bg);
+  height: 23px;
+  font-size: 12px;
+  position: relative;
+  border-radius: 16px;
+}

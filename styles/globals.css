@@ -1,9 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--page-bg);
 }
 
 a {
@@ -12,5 +11,15 @@ a {
 }
 
 * {
+  --nav-bg: #101010;
+  --ride-bg: #171717;
+  --page-bg: #292929;
+  --badge-bg: #0a0a0a;
+  --tab-bg: #c2bfbf;
+  --active-tab-bg: #d7d7d7;
+  --ride-title-bg: #737373;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
 }

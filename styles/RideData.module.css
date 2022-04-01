@@ -1,0 +1,12 @@
+.ridedata__wrapper {
+  display: flex;
+  font-size: 14px;
+  gap: 7px;
+}
+
+.ridedata__title {
+  color: var(--ride-title-bg);
+}
+
+.ridedata__data {
+}
